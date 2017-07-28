@@ -4,7 +4,7 @@
   "description": "credit card service",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-core/register --require babel-polyfill ./credit/tests/helper.js \"./credit/**/*.spec.js\""
   },
   "repository": {
     "type": "git",
@@ -40,7 +40,7 @@
     "redux": "^3.7.1",
     "redux-form": "^7.0.2",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.15.6",
+    "redux-saga": "^0.15.6"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
