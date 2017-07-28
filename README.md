@@ -17,4 +17,4 @@ npm start
 ```
 
 ### Heroku
-https://credit-card.herokuapp.com:4000/
+https://credit-card.herokuapp.com/
