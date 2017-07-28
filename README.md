@@ -1,2 +1,4 @@
 # credit_card
-신용카드 결제 서비스
+Credit Card App based on React, Redux, React Router, Webpack
+
+

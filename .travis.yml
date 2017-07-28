@@ -1,0 +1,10 @@
+language:
+  - nodejs
+rvm:
+  - 2.3.0
+install:
+  - nvm install stable
+  - nvm use stable
+  - npm install
+script:
+  - npm run test
