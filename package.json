@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require babel-polyfill ./credit/tests/helper.js \"./credit/**/*.spec.js\"",
-    "prod": "NODE_ENV=production node server.js",
-    "postinstall": "webpack -p"
+    "prod": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
