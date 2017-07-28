@@ -4,8 +4,10 @@
   "description": "credit card service",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --profile --colors --hot --config webpack.config.js",
-    "test": "mocha --compilers js:babel-core/register --require babel-polyfill ./credit/tests/helper.js \"./credit/**/*.spec.js\""
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "test": "mocha --compilers js:babel-core/register --require babel-polyfill ./credit/tests/helper.js \"./credit/**/*.spec.js\"",
+    "prod": "NODE_ENV=production node server.js",
+    "postinstall": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
     "autobind-decorator": "^2.1.0",
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
+    "express": "^4.15.3",
     "history": "^4.6.3",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
