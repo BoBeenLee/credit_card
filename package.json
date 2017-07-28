@@ -4,6 +4,7 @@
   "description": "credit card service",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --progress --profile --colors --hot --config webpack.config.js",
     "test": "mocha --compilers js:babel-core/register --require babel-polyfill ./credit/tests/helper.js \"./credit/**/*.spec.js\""
   },
   "repository": {
