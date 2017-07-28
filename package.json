@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require babel-polyfill ./credit/tests/helper.js \"./credit/**/*.spec.js\"",
-    "prod": "NODE_ENV=production node server.js"
+    "prod": "NODE_ENV=production node server.js",
+    "postinstall": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -79,8 +80,8 @@
     "stylelint-config-standard": "16.0.0",
     "stylelint-webpack-plugin": "0.8.0",
     "url-loader": "^0.5.8",
-    "webpack": "3.1.0",
     "webpack-dev-server": "^2.5.0",
-    "webpack-manifest-plugin": "1.1.2"
+    "webpack-manifest-plugin": "1.1.2",
+    "webpack": "3.1.0"
   }
 }
