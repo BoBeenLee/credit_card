@@ -7,7 +7,7 @@
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require babel-polyfill ./credit/tests/helper.js \"./credit/**/*.spec.js\"",
     "prod": "NODE_ENV=production node server.js",
-    "postinstall": "./node_modules/.bin/webpack -p"
+    "postinstall": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -44,7 +44,8 @@
     "redux": "^3.7.1",
     "redux-form": "^7.0.2",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.15.6"
+    "redux-saga": "^0.15.6",
+    "webpack": "3.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -81,7 +82,6 @@
     "stylelint-webpack-plugin": "0.8.0",
     "url-loader": "^0.5.8",
     "webpack-dev-server": "^2.5.0",
-    "webpack-manifest-plugin": "1.1.2",
-    "webpack": "3.1.0"
+    "webpack-manifest-plugin": "1.1.2"
   }
 }
