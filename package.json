@@ -34,6 +34,7 @@
     "prop-types": "15.5.10",
     "react": "^15.4.1",
     "react-addons-update": "^15.6.0",
+    "react-bootstrap": "^0.31.1",
     "react-dom": "^15.4.1",
     "react-keydown": "^1.7.4",
     "react-player": "^0.18.0",
@@ -44,7 +45,8 @@
     "redux": "^3.7.1",
     "redux-form": "^7.0.2",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.15.6"
+    "redux-saga": "^0.15.6",
+    "styled-components": "^2.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -59,6 +61,7 @@
     "chai": "^4.0.2",
     "chai-jquery": "^2.0.0",
     "css-loader": "^0.28.4",
+    "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.2",
     "eslint-loader": "1.9.0",
@@ -80,8 +83,8 @@
     "stylelint-config-standard": "16.0.0",
     "stylelint-webpack-plugin": "0.8.0",
     "url-loader": "^0.5.8",
+    "webpack": "3.1.0",
     "webpack-dev-server": "^2.5.0",
-    "webpack-manifest-plugin": "1.1.2",
-    "webpack": "3.1.0"
+    "webpack-manifest-plugin": "1.1.2"
   }
 }

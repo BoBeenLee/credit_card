@@ -7,7 +7,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import chaiJquery from 'chai-jquery';
-import reducers from '../reducers/reducers';
+import reducers from '../reducers';
 
 const doc = new jsdom.JSDOM('<!doctype html><html><body></body></html>');
 const win = doc.window;

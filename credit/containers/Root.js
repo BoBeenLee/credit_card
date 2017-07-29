@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import HomePage from './HomePage';
+import HomeContainer from './Home/HomeContainer';
+import DetailContainer from './Detail/DetailContainer';
+import TopNav from '../components/TopNav';
 
 class Root extends Component {
-
   render() {
     return (
       <BrowserRouter>
-        <Switch>
-          <Route path="/" component={ HomePage } />
-        </Switch>
+        <div>
+          <TopNav />
+          <Switch>
+            <Route exact path="/" component={ HomeContainer } />
+            <Route path="/detail/:id" component={ DetailContainer } />
+          </Switch>
+        </div>
       </BrowserRouter>
     );
   }
