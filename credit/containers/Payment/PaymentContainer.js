@@ -4,9 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import Payment from '../../components/Payment/Payment';
-
-const propTypes = {};
-const defaultProps = {};
+import validate from './validate';
 
 function mapStateToProps(state) {
   return {
@@ -25,5 +23,6 @@ export default connect(
 )(reduxForm({
   form: 'credit',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true
+  forceUnregisterOnUnmount: true,
+  validate
 })(Payment));

@@ -25,7 +25,7 @@ class User extends Component {
   componentDidMount() {}
 
   renderFieldGroup({ input, meta: { touched, error }, id, label, ...props }) {
-    console.log('dsd');
+    // console.log('dsd');
     return (
       <FormGroup controlId={ id }>
         <ControlLabel>{label}</ControlLabel>
@@ -50,7 +50,6 @@ class User extends Component {
             type="text"
             label="이름"
             placeholder="BoBinLee"
-            validate={ [_.partial(required, 'name'), _.curry(maxLength, 15)] }
             component={ this.renderFieldGroup } />
           <Field
             id="email"
@@ -58,7 +57,6 @@ class User extends Component {
             type="email"
             label="이메일"
             placeholder="example@example.com"
-            validate={ [_.partial(required, 'email'), email] }
             component={ this.renderFieldGroup } />
           <Field
             id="phoneNumber"
@@ -67,7 +65,6 @@ class User extends Component {
             label="연락처"
             placeholder="010-1234-1234"
             component={ this.renderFieldGroup }
-            validate={ [_.partial(required, 'phoneNumber')] }
             normalize={ normalizePhone } />
           <div>
             <Button onClick={ previousPage }>이전</Button>

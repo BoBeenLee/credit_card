@@ -54,7 +54,6 @@ class Payment extends Component {
           type="text"
           label="카드번호"
           placeholder="0000-1111-2222-3333"
-          validate={ [_.partial(required, 'cardNumber')] }
           component={ this.renderFieldGroup }
           normalize={ normalizeCardNumber } />
         <Field
@@ -63,7 +62,6 @@ class Payment extends Component {
           type="date"
           label="유효기간"
           placeholder="2011/01/01"
-          validate={ [_.partial(required, 'validatedAt')] }
           component={ this.renderFieldGroup } />
         <Field
           id="birthDate"
@@ -71,14 +69,12 @@ class Payment extends Component {
           type="date"
           label="생년월일"
           placeholder="2011/01/01"
-          validate={ [_.partial(required, 'birthDate')] }
           component={ this.renderFieldGroup } />
         <Field
           id="cardPassword"
           name="cardPassword"
           type="password"
           label="카드비밀번호"
-          validate={ [_.partial(required, 'cardPassword')] }
           component={ this.renderFieldGroup } />
 
         <div>

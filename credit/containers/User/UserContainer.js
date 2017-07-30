@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import User from '../../components/User/User';
+import validate from './validate';
 
 function mapStateToProps(state) {
   return {
@@ -21,5 +22,6 @@ export default connect(
 )(reduxForm({
   form: 'credit',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true
+  forceUnregisterOnUnmount: true,
+  validate
 })(User));

@@ -1,4 +1,7 @@
-export const required = (value) => (value ? undefined : `${name} Required`);
+export const required = (name, value) => {
+  console.log(name, value);
+  return (value ? undefined : `${name} Required`);
+};
 export const maxLength = max => value =>
       (value && value.length > max ? `Must be ${max} characters or less` : undefined);
 export const minLength = min => value =>
