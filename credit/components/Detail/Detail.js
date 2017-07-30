@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Button, FormGroup, Image, Panel, Radio} from 'react-bootstrap';
+import {
+  Button, ControlLabel, FormControl, FormGroup, HelpBlock, Image, Panel,
+  Radio
+} from 'react-bootstrap';
+import { Field } from 'redux-form';
+import _ from 'lodash';
 
 const propTypes = {
   match: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   prices: PropTypes.array.isRequired,
-  fetchProductItem: PropTypes.func.isRequired
+  fetchProductItem: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
@@ -18,30 +24,41 @@ class Detail extends Component {
     this.props.fetchProductItem(id);
   }
 
-  getPrices = prices => prices.map((price, index) => {
-    return (<span key={price.id}>
-      <Radio name="price" checked={ !index } value={ price.price } inline>
-        {price.product}
-      </Radio>
-      {' '}
-    </span>);
-  });
-
   render() {
-    const { title, content, prices } = this.props;
-    console.log(title, content, prices);
+    const { title, content, prices, handleSubmit } = this.props;
+
+    const renderPrices = ({ input, meta, prices, ...props }) => {
+      console.log(input, meta, prices, props);
+      const selectedPrice = _.first(_.filter(prices, price => price.product === input.value)) || meta.initial;
+      const options = _.map(prices, price => (<option key={ price.product } value={ price.product } >
+        { price.product }
+      </option>));
+      return (<FormGroup controlId="formControlsSelect">
+        <ControlLabel>가격 유형</ControlLabel>
+        <FormControl
+          name={ input.name }
+          componentClass="select"
+          placeholder="select"
+          defaultValue={ selectedPrice && selectedPrice.product }
+          { ...input }
+          { ...props }>
+          { options }
+        </FormControl>
+        {selectedPrice && <HelpBlock>금액 : {selectedPrice.price}</HelpBlock>}
+      </FormGroup>);
+    };
     return (
       <div>
         <Panel header={ title } bsStyle="primary">
-          <Image src="http://via.placeholder.com/300x300" responsive />
-          { content }
-          <FormGroup>
-            { this.getPrices(prices) }
-          </FormGroup>
-          <div>
-            <Button>Home</Button>
-            <Button bsStyle="primary">Next</Button>
-          </div>
+          <form onSubmit={ handleSubmit }>
+            <Image src="http://via.placeholder.com/300x300" responsive />
+            { content }
+            <Field
+              name="price"
+              prices={ prices }
+              component={ renderPrices } />
+            <Button type="submit" bsStyle="primary">Next</Button>
+          </form>
         </Panel>
       </div>
     );

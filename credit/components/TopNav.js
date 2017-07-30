@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import {LinkContainer} from 'react-router-bootstrap';
 
 const propTypes = {};
 
@@ -15,9 +16,11 @@ const TopNav = () => (
       </Navbar.Brand>
     </Navbar.Header>
     <Nav>
-      <NavItem eventKey={ 1 }>
-        <Link to="/">Home</Link>
-      </NavItem>
+      <LinkContainer to="/">
+        <NavItem eventKey={ 1 }>
+          Home
+        </NavItem>
+      </LinkContainer>
     </Nav>
   </Navbar>
   );

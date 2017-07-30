@@ -3,6 +3,5 @@ import homeSagas from './containers/Home/sagas';
 import detailSagas from './containers/Detail/sagas';
 
 export default function* rootSaga() {
-  yield fork(homeSagas);
-  yield fork(detailSagas);
+  yield [fork(homeSagas), fork(detailSagas)];
 }
