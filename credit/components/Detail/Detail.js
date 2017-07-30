@@ -24,29 +24,38 @@ class Detail extends Component {
     this.props.fetchProductItem(id);
   }
 
+  handleChange = (onChange, prices, e) => {
+    const selectedPrice = _.first(_.filter(prices, price => price.product === e.target.value));
+    onChange(selectedPrice);
+  };
+
+  renderPrices = ({ input, meta, prices, ...props }) => {
+    const selectedPrice = _.first(_.filter(prices, price => price.product === input.value.product)) || meta.initial;
+    const options = _.map(prices, price => (
+      <option
+        key={ price.product }
+        value={ price.product }>
+        { price.product }
+      </option>
+    ));
+    return (<FormGroup controlId="formControlsSelect">
+      <ControlLabel>가격 유형</ControlLabel>
+      <FormControl
+        name={ input.name }
+        componentClass="select"
+        placeholder="select"
+        defaultValue={ selectedPrice && selectedPrice.product }
+        onChange={ _.partial(this.handleChange, input.onChange, prices, _) }
+        { ...props }>
+        { options }
+      </FormControl>
+      {selectedPrice && <HelpBlock>금액 : {selectedPrice.price}</HelpBlock>}
+    </FormGroup>);
+  };
+
   render() {
     const { title, content, prices, handleSubmit } = this.props;
 
-    const renderPrices = ({ input, meta, prices, ...props }) => {
-      console.log(input, meta, prices, props);
-      const selectedPrice = _.first(_.filter(prices, price => price.product === input.value)) || meta.initial;
-      const options = _.map(prices, price => (<option key={ price.product } value={ price.product } >
-        { price.product }
-      </option>));
-      return (<FormGroup controlId="formControlsSelect">
-        <ControlLabel>가격 유형</ControlLabel>
-        <FormControl
-          name={ input.name }
-          componentClass="select"
-          placeholder="select"
-          defaultValue={ selectedPrice && selectedPrice.product }
-          { ...input }
-          { ...props }>
-          { options }
-        </FormControl>
-        {selectedPrice && <HelpBlock>금액 : {selectedPrice.price}</HelpBlock>}
-      </FormGroup>);
-    };
     return (
       <div>
         <Panel header={ title } bsStyle="primary">
@@ -56,7 +65,7 @@ class Detail extends Component {
             <Field
               name="price"
               prices={ prices }
-              component={ renderPrices } />
+              component={ this.renderPrices } />
             <Button type="submit" bsStyle="primary">Next</Button>
           </form>
         </Panel>

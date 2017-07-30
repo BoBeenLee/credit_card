@@ -28,5 +28,6 @@ export default connect(
 )(reduxForm({
   form: 'credit',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true
+  forceUnregisterOnUnmount: true,
+  enableReinitialize: true
 })(Detail));

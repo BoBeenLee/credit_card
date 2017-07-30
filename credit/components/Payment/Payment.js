@@ -4,6 +4,11 @@ import {
   Button, FormGroup, Image, Panel, Radio,
   ControlLabel, FormControl, HelpBlock
 } from 'react-bootstrap';
+import { Field } from 'redux-form';
+import _ from 'lodash';
+import normalizeCardNumber from './normalizeCardNumber';
+import { required, maxLength, email } from '../validate';
+
 
 const propTypes = {
   handleSubmit: PropTypes.func.isRequired,
@@ -13,45 +18,68 @@ const propTypes = {
 const defaultProps = {};
 
 class Payment extends Component {
+  constructor(props) {
+    super(props);
+    this.renderFieldGroup = this.renderFieldGroup.bind(this);
+  }
+
   componentDidMount() {}
 
   submit = ({ name, email, phoneNumber, cardNumber, validatedAt, birthDate, cardPassword }) => {
 
   };
 
-  render() {
-    const { previousPage, handleSubmit } = this.props;
-
-    const FieldGroup = ({ id, label, help, ...props }) => (
+  renderFieldGroup({ input, meta: { touched, error }, id, label, ...props }) {
+    console.log('dsd');
+    return (
       <FormGroup controlId={ id }>
         <ControlLabel>{label}</ControlLabel>
-        <FormControl { ...props } />
-        {help && <HelpBlock>{help}</HelpBlock>}
+        <FormControl
+          { ...input }
+          { ...props } />
+        {touched && error && <HelpBlock>{error}</HelpBlock>}
       </FormGroup>
-      );
+    );
+  }
+
+  render() {
+    const { previousPage, handleSubmit } = this.props;
 
     return (
       <form onSubmit={ handleSubmit(this.submit) }>
         <h3>Card Info</h3>
-        <FieldGroup
+        <Field
           id="cardNumber"
+          name="cardNumber"
           type="text"
           label="카드번호"
-          placeholder="0000-1111-2222-3333" />
-        <FieldGroup
+          placeholder="0000-1111-2222-3333"
+          validate={ [_.partial(required, 'cardNumber')] }
+          component={ this.renderFieldGroup }
+          normalize={ normalizeCardNumber } />
+        <Field
           id="validatedAt"
+          name="validatedAt"
           type="date"
           label="유효기간"
-          placeholder="2011/01/01" />
-        <FieldGroup
+          placeholder="2011/01/01"
+          validate={ [_.partial(required, 'validatedAt')] }
+          component={ this.renderFieldGroup } />
+        <Field
           id="birthDate"
+          name="birthDate"
           type="date"
           label="생년월일"
-          placeholder="2011/01/01" />
-        <FieldGroup
+          placeholder="2011/01/01"
+          validate={ [_.partial(required, 'birthDate')] }
+          component={ this.renderFieldGroup } />
+        <Field
           id="cardPassword"
+          name="cardPassword"
           type="password"
-          label="카드비밀번호" />
+          label="카드비밀번호"
+          validate={ [_.partial(required, 'cardPassword')] }
+          component={ this.renderFieldGroup } />
 
         <div>
           <Button onClick={ previousPage }>이전</Button>
