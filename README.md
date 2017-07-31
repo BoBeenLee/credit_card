@@ -3,6 +3,8 @@
 ### Stack
 * React
 * React Router
+* Redux-form
+* React-Bootstrap
 * Babel
 * Webpack
 
