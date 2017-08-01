@@ -4,8 +4,11 @@ import {
   Button, ControlLabel, FormControl, FormGroup, HelpBlock, Image, Panel,
   Radio
 } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Field } from 'redux-form';
 import _ from 'lodash';
+import { Prev, Next } from '../Common';
+import './Detail.scss';
 
 const propTypes = {
   match: PropTypes.object.isRequired,
@@ -19,6 +22,11 @@ const propTypes = {
 const defaultProps = {};
 
 class Detail extends Component {
+  constructor(props) {
+    super(props);
+    this.renderPrices = this.renderPrices.bind(this);
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchProductItem(id);
@@ -49,7 +57,7 @@ class Detail extends Component {
         { ...props }>
         { options }
       </FormControl>
-      {selectedPrice && <HelpBlock>금액 : {selectedPrice.price}</HelpBlock>}
+      {selectedPrice && <HelpBlock className="detail-price">금액 : {selectedPrice.price}</HelpBlock>}
     </FormGroup>);
   };
 
@@ -57,16 +65,23 @@ class Detail extends Component {
     const { title, content, prices, handleSubmit } = this.props;
 
     return (
-      <div>
+      <div className="detail">
         <Panel header={ title } bsStyle="primary">
           <form onSubmit={ handleSubmit }>
-            <Image src="http://via.placeholder.com/300x300" responsive />
-            { content }
+            <Image className="detail-image" src="http://via.placeholder.com/300x300" responsive rounded />
+            <p className="detail-content">
+              { content }
+            </p>
             <Field
               name="price"
               prices={ prices }
               component={ this.renderPrices } />
-            <Button type="submit" bsStyle="primary">Next</Button>
+            <div className="btn-box">
+              <LinkContainer className="btn-prev" to="/">
+                <Prev>이전</Prev>
+              </LinkContainer>
+              <Next className="btn-next" type="submit" bsStyle="primary">구매</Next>
+            </div>
           </form>
         </Panel>
       </div>

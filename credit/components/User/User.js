@@ -8,6 +8,8 @@ import { Field } from 'redux-form';
 import _ from 'lodash';
 import normalizePhone from './normalizePhone';
 import { required, maxLength, email } from '../validate';
+import { Prev, Next } from '../Common';
+import './User.scss';
 
 const propTypes = {
   handleSubmit: PropTypes.func.isRequired,
@@ -41,7 +43,7 @@ class User extends Component {
     const { previousPage, handleSubmit } = this.props;
 
     return (
-      <div>
+      <div className="user">
         <form onSubmit={ handleSubmit }>
           <h3>유저 정보 입력</h3>
           <Field
@@ -66,9 +68,9 @@ class User extends Component {
             placeholder="010-1234-1234"
             component={ this.renderFieldGroup }
             normalize={ normalizePhone } />
-          <div>
-            <Button onClick={ previousPage }>이전</Button>
-            <Button type="submit" bsStyle="primary">다음</Button>
+          <div className="btn-box">
+            <Prev onClick={ previousPage }>이전</Prev>
+            <Next type="submit" bsStyle="primary">다음</Next>
           </div>
         </form>
       </div>

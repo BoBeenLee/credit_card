@@ -6,7 +6,8 @@ const validate = values => {
     cardNumber: required('cardNumber', values.cardNumber),
     validatedAt: required('validatedAt', values.validatedAt),
     birthDate: required('birthDate', values.birthDate),
-    cardPassword: required('cardPassword', values.cardPassword),
+    cardPassword: required('cardPassword', values.cardPassword) ||
+    maxLength(2)(values.cardPassword),
   };
   return errors;
 };
