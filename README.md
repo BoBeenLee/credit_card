@@ -5,6 +5,8 @@
 * React Router
 * Redux-form
 * React-Bootstrap
+* Sass
+* styled-components
 * Babel
 * Webpack
 
