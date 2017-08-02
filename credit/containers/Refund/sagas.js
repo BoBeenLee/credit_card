@@ -11,7 +11,7 @@ export const POST_REFUND_FAIL = 'POST_REFUND_FAIL';
 function* postRefund({ payload: { merchantUid, reason, resolve, reject } }) {
   yield put({ type: POST_READY_REFUND });
   try {
-    const response = yield call(callJsonApi, '/json/oneTime.json');  // yield call(paymentCancel, merchantUid, reason);
+    const response = yield call(paymentCancel, merchantUid, reason);
     yield put({
       type: POST_REFUND_SUCCESS,
       payload: {}

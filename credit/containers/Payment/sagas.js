@@ -11,7 +11,7 @@ export const POST_PAYMENT_FAIL = 'POST_PAYMENT_FAIL';
 function* postPayment({ payload: { price, user, payment, resolve, reject } }) {
   yield put({ type: POST_READY_PAYMENT });
   try {
-    const response = yield call(callJsonApi, '/json/oneTime.json'); // call(paymentOneTime, price, user, payment);
+    const response = call(paymentOneTime, price, user, payment);
     console.log(response);
     yield put({
       type: POST_PAYMENT_SUCCESS,
