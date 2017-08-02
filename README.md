@@ -17,7 +17,7 @@ npm run build
 
 ### run Dev 
 ```
-npm start
+node server.js
 ```
 
 ### Heroku
