@@ -21,7 +21,7 @@ module.exports = {
     host: 'localhost',
     port: 4000,
     historyApiFallback: true,
-    contentBase: __dirname + '/public/'
+    contentBase: `${__dirname}/public/`
   },
   module: {
     // https://velopert.com/1492
@@ -38,19 +38,27 @@ module.exports = {
           ]
         }
       },
+      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.(png|jpg|gif|eot|ttf|woff|woff2)$/,
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      { test: /\.gif$/, loader: 'url-loader?mimetype=image/png' },
+      { test: /\.woff(2)?(\?v=[0-9].[0-9].[0-9])?$/, loader: 'url-loader?mimetype=application/font-woff' },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9].[0-9].[0-9])?$/, loader: 'file-loader?name=[name].[ext]' },
+      {
+        test: /\.(png|jpg|eot|ttf|woff|woff2)$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
           name: '[name].[ext]'
         }
       }
-    ],
+    ]
   },
 
   plugins: [

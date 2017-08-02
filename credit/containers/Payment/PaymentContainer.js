@@ -15,13 +15,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    postPayment: (price, user, payment) => {
+    postPayment: (price, user, payment, resolve, reject) => {
       dispatch({
         type: POST_PAYMENT,
         payload: {
+          price,
           user,
           payment,
-          price
+          resolve,
+          reject
         }
       });
     }

@@ -2,7 +2,8 @@ import { POST_READY_PAYMENT, POST_PAYMENT_SUCCESS, POST_PAYMENT_FAIL } from './s
 
 const initialState = {
   redirectToReferrer: false,
-  result: {}
+  result: {},
+  message: ''
 };
 
 const payment = (state = initialState, action) => {
@@ -17,8 +18,17 @@ const payment = (state = initialState, action) => {
           cardNumber: action.payload.payment.cardNumber
         }
       };
-    case POST_READY_PAYMENT:
     case POST_PAYMENT_FAIL:
+      return {
+        ...state,
+        message: action.message
+      };
+    case POST_READY_PAYMENT:
+      return {
+        redirectToReferrer: false,
+        result: {},
+        message: ''
+      };
     default:
       return state;
   }

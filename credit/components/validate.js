@@ -1,5 +1,4 @@
 export const required = (name, value) => {
-  console.log(name, value);
   return (value ? undefined : `${name} Required`);
 };
 export const maxLength = max => value =>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import styled from 'styled-components';
+
 import TopNav from '../components/TopNav';
 import HomeContainer from './Home/HomeContainer';
 import WizardForm from '../components/Wizard/WizardForm';
-import ResultContainer from './Result/ResultContainer';
 import Result from '../components/Result/Result';
-import styled from 'styled-components';
 
 const Content = styled.div`
   padding: 0 20px;
