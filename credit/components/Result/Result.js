@@ -23,7 +23,6 @@ class Result extends Component {
   submit = () => {
     const { merchantUid, price } = this.props.location.result;
     const { history } = this.props;
-    console.log(history, merchantUid, price);
     return new Promise(
         (resolve, reject) => this.props.paymentCancel(merchantUid, 'cancel',
             resolve, reject)).then(result => {

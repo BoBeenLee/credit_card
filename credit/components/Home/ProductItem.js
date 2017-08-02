@@ -16,7 +16,7 @@ const ProductItem = props => {
   return (
     <div>
       <Thumbnail src="http://via.placeholder.com/300x300" alt="242x200">
-        <h3>{title}</h3>
+        <h4>{title}</h4>
       </Thumbnail>
     </div>
   );
