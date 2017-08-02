@@ -27,6 +27,7 @@
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "history": "^4.6.3",
     "iamport": "^0.3.4",

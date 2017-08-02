@@ -8,32 +8,30 @@ app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-let config;
-try {
-  config = require('./config');
-} catch (err) {
-  console.log(err);
-}
+require('dotenv').config();
 
-const argv = config || require('minimist')(process.argv.slice(2));
+const argv = require('minimist')(process.argv.slice(2));
 
-console.dir(argv);
+const keys = {
+  apiKey: process.env['apiKey'] || argv['apiKey'],
+  secretKey: process.env['secretKey'] || argv['secretKey']
+};
 
 const iamport = new Iamport({
-  impKey: argv[ 'apiKey' ],
-  impSecret: argv[ 'secretKey' ],
+  impKey: keys['apiKey'],
+  impSecret: keys['secretKey']
 });
 
 app.post('/subscribe/payments/onetime', (req, res) => {
   iamport.subscribe.onetime(req.body).then(result => {
     res.send({
       status: 'success',
-      message: result.message,
+      message: result.message
     });
   }).catch(err => {
     res.send({
       status: 'error',
-      message: err.message,
+      message: err.message
     });
   });
 });
@@ -42,12 +40,12 @@ app.post('/payments/cancel', (req, res) => {
   iamport.payment.cancel(req.body).then(result => {
     res.send({
       status: 'success',
-      message: result.message,
+      message: result.message
     });
   }).catch(err => {
     res.send({
       status: 'error',
-      message: err.message,
+      message: err.message
     });
   });
 });
