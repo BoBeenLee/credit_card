@@ -29,6 +29,18 @@ export function paymentOneTime(price, user, payment) {
   return response;
 }
 
+export function paymentCancel(merchantUid, reason) {
+  const response = fetch.post('/payments/cancel', {
+    merchant_uid: merchantUid,
+    reason
+  }).then(response => {
+    if (response.data.status == 'error') {
+      throw new Error(response.data.message);
+    }
+  });
+  return response;
+}
+
 export function sendEmail(email, name, price) {
   const { serviceId, templateId } = emailAuth;
   const response = emailjs.send(serviceId,

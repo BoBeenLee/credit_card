@@ -13,6 +13,7 @@ const payment = (state = initialState, action) => {
         redirectToReferrer: true,
         result: {
           isSuccess: true,
+          merchantUid: action.payload.merchantUid,
           user: action.payload.user,
           price: action.payload.price,
           cardNumber: action.payload.payment.cardNumber
@@ -24,11 +25,7 @@ const payment = (state = initialState, action) => {
         message: action.message
       };
     case POST_READY_PAYMENT:
-      return {
-        redirectToReferrer: false,
-        result: {},
-        message: ''
-      };
+      return initialState;
     default:
       return state;
   }

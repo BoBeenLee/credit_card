@@ -21,10 +21,11 @@ const propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   previousPage: PropTypes.func.isRequired,
   postPayment: PropTypes.func.isRequired,
-  message: PropTypes.string.isRequired
+  message: PropTypes.string
 };
 
 const defaultProps = {
+  message: ''
 };
 
 class Payment extends Component {

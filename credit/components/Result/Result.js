@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Alert, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Prev, Next } from '../Common/index';
 import './Result.scss';
 
 const propTypes = {
-  location: PropTypes.object
+  message: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  paymentCancel: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -16,12 +20,25 @@ const defaultProps = {
 class Result extends Component {
   componentDidMount() {}
 
+  submit = () => {
+    const { merchantUid, price } = this.props.location.result;
+    const { history } = this.props;
+    console.log(history, merchantUid, price);
+    return new Promise(
+        (resolve, reject) => this.props.paymentCancel(merchantUid, 'cancel',
+            resolve, reject)).then(result => {
+              history.push('/refund', { price });
+            });
+  }
+
   render() {
     const { isSuccess, user: { name, email, phoneNumber }, price: { product, price }, cardNumber } = this.props.location.result ||
     { isSuccess: false, user: { name: '', email: '', phoneNumber: '' }, price: { product: '', price: '' } };
+    const { message, handleSubmit } = this.props;
 
     return (
-      <div className="result">
+      <form className="result" onSubmit={ handleSubmit(this.submit) }>
+        { message &&  <Alert bsStyle="danger">{message}</Alert> }
         <h3>결제 내역</h3>
         <h4>유저 정보</h4>
         <ListGroup>
@@ -45,7 +62,7 @@ class Result extends Component {
           </LinkContainer>
           <Next type="submit" bsStyle="primary">결제취소</Next>
         </div>
-      </div>
+      </form>
     );
   }
 }

@@ -1,20 +1,40 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Panel } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Prev } from '../Common/index';
+import './Refund.scss';
 
-const propTypes = {};
+const propTypes = {
+  location: PropTypes.shape({
+    state: {
+      price: PropTypes.shape({
+        product: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired
+      }).isRequired
+    }
+  }).isRequired
+};
 
 const defaultProps = {};
 
 class Refund extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {}
 
   render() {
+    const { product, price } = this.props.location.state.price ||
+    { product: '', price: '' };
     return (
-        <div>Refund</div>
+      <div className="refund">
+        <Panel>
+          {product}, {price}원 결제 취소 완료 되었습니다.
+          </Panel>
+        <div className="btn-box">
+          <LinkContainer to="/">
+            <Prev>홈</Prev>
+          </LinkContainer>
+        </div>
+      </div>
     );
   }
 }
