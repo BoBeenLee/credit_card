@@ -25,9 +25,8 @@ const payment = (state = initialState, action) => {
         message: action.message
       };
     case POST_READY_PAYMENT:
-      return initialState;
     default:
-      return state;
+      return initialState;
   }
 };
 
