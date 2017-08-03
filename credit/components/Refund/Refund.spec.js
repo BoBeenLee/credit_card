@@ -9,7 +9,7 @@ import Refund from './Refund';
 
 describe('<Refund />', () => {
   it('render <Refund /> component', () => {
-    const wrapper = shallow(<Refund />);
+    const wrapper = shallow(<Refund location={ { state: { prices: {} } } } />);
     expect(wrapper.find(Panel)).to.have.length(1);
   });
 });
