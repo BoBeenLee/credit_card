@@ -27,7 +27,6 @@ class User extends Component {
   componentDidMount() {}
 
   renderFieldGroup({ input, meta: { touched, error }, id, label, ...props }) {
-    // console.log('dsd');
     return (
       <FormGroup controlId={ id }>
         <ControlLabel>{label}</ControlLabel>
