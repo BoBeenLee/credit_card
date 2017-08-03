@@ -17,6 +17,7 @@ npm run build
 
 ### run Dev 
 ```
+webpack -p
 node server.js
 ```
 
