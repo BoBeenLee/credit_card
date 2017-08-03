@@ -28,7 +28,7 @@ class Refund extends Component {
       <div className="refund">
         <Panel>
           {product}, {price}원 결제 취소 완료 되었습니다.
-          </Panel>
+        </Panel>
         <div className="btn-box">
           <LinkContainer to="/">
             <Prev>홈</Prev>

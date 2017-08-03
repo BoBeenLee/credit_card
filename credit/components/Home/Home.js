@@ -8,7 +8,6 @@ import ProductItem from './ProductItem';
 const propTypes = {
   items: PropTypes.array.isRequired,
   fetchProductItems: PropTypes.func.isRequired,
-  fetchSagaTest: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -17,7 +16,6 @@ const defaultProps = {
 class Home extends Component {
   componentDidMount() {
     this.props.fetchProductItems();
-    this.props.fetchSagaTest();
   }
 
   render() {
