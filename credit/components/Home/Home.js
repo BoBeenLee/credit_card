@@ -26,7 +26,9 @@ class Home extends Component {
             (<Row key={ `row${index}` }>
               { partitionItems.map((item, index) =>
                 (<Col key={ item.id } md={ 4 }>
-                  <Link to={`/detail/${item.id}`}><ProductItem { ...item } /></Link>
+                  <Link to={`/detail/${item.id}`}>
+                    <ProductItem { ...item } />
+                  </Link>
                 </Col>))}
             </Row>));
     return (
